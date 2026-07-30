@@ -94,4 +94,3 @@ function Landing() {
   );
 }
 
-export { redirect };
