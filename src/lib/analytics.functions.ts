@@ -72,10 +72,17 @@ export const getDashboardData = createServerFn({ method: "GET" })
     const avgActive = daily.length ? Math.round(sum(daily, (d) => d.active_users) / daily.length) : 0;
     const totalSessions = sum(usage, (u) => u.sessions);
 
-    const prevSignIns = sum(prevDaily, (d) => d.sign_ins);
-    const prevSignups = sum(prevDaily, (d) => d.signups);
-    const prevFailed = sum(prevDaily, (d) => d.failed_logins);
-    const prevSessions = sum(prevUsage, (u) => u.sessions);
+    // The prior window can hold fewer days of history than the current one, so
+    // normalise its totals to a comparable per-day basis before computing deltas.
+    const prevScale = prevDaily.length ? daily.length / prevDaily.length : 0;
+    const prevUsageDays = new Set(prevUsage.map((u) => u.day)).size;
+    const usageDays = new Set(usage.map((u) => u.day)).size || 1;
+    const prevUsageScale = prevUsageDays ? usageDays / prevUsageDays : 0;
+
+    const prevSignIns = sum(prevDaily, (d) => d.sign_ins) * prevScale;
+    const prevSignups = sum(prevDaily, (d) => d.signups) * prevScale;
+    const prevFailed = sum(prevDaily, (d) => d.failed_logins) * prevScale;
+    const prevSessions = sum(prevUsage, (u) => u.sessions) * prevUsageScale;
     const prevAvgActive = prevDaily.length
       ? Math.round(sum(prevDaily, (d) => d.active_users) / prevDaily.length)
       : 0;
