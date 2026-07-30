@@ -1,4 +1,4 @@
-import { createFileRoute, Link, redirect } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Fingerprint, KeyRound, LineChart, Lock } from "lucide-react";
 import { BrandMark } from "@/components/portal/brand-mark";
 import { Button } from "@/components/ui/button";
