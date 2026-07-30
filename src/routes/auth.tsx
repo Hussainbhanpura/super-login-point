@@ -62,7 +62,7 @@ const highlights = [
 function AuthPage() {
   const { mode } = Route.useSearch();
   const navigate = useNavigate();
-  const scope = useScrollReveal<HTMLElement>();
+  const scope = useScrollReveal<HTMLElement>([checking, emailSent, tab]);
   const [tab, setTab] = useState(mode === "signup" ? "signup" : "signin");
   const [loading, setLoading] = useState(false);
   const [checking, setChecking] = useState(true);
