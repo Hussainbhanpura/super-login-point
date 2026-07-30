@@ -238,7 +238,7 @@ function Dashboard() {
     },
     {
       label: "Engaged time",
-      value: `${compact(kpis.totalEngagement)}m`,
+      value: `${compact(Math.round(kpis.totalEngagement / 60))} hrs`,
       icon: Timer,
       delta: undefined,
       hint: `${kpis.sessionsPerUser} sessions / active user`,
