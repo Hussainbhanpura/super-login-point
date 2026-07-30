@@ -14,6 +14,33 @@ export type Database = {
   }
   public: {
     Tables: {
+      analytics_daily: {
+        Row: {
+          active_users: number
+          day: string
+          failed_logins: number
+          sign_ins: number
+          signups: number
+          unique_devices: number
+        }
+        Insert: {
+          active_users?: number
+          day: string
+          failed_logins?: number
+          sign_ins?: number
+          signups?: number
+          unique_devices?: number
+        }
+        Update: {
+          active_users?: number
+          day?: string
+          failed_logins?: number
+          sign_ins?: number
+          signups?: number
+          unique_devices?: number
+        }
+        Relationships: []
+      }
       app_access: {
         Row: {
           application_id: string
@@ -68,6 +95,38 @@ export type Database = {
         Relationships: [
           {
             foreignKeyName: "app_sessions_application_id_fkey"
+            columns: ["application_id"]
+            isOneToOne: false
+            referencedRelation: "applications"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      app_usage_daily: {
+        Row: {
+          application_id: string
+          avg_duration_seconds: number
+          day: string
+          id: string
+          sessions: number
+        }
+        Insert: {
+          application_id: string
+          avg_duration_seconds?: number
+          day: string
+          id?: string
+          sessions?: number
+        }
+        Update: {
+          application_id?: string
+          avg_duration_seconds?: number
+          day?: string
+          id?: string
+          sessions?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "app_usage_daily_application_id_fkey"
             columns: ["application_id"]
             isOneToOne: false
             referencedRelation: "applications"
