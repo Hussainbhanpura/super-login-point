@@ -101,7 +101,7 @@ export const getDashboardData = createServerFn({ method: "GET" })
       const rows = usage.filter((u) => u.application_id === app.id);
       const prevRows = prevUsage.filter((u) => u.application_id === app.id);
       const sessions = sum(rows, (r) => r.sessions);
-      const prevAppSessions = sum(prevRows, (r) => r.sessions);
+      const prevAppSessions = sum(prevRows, (r) => r.sessions) * prevUsageScale;
       const avg = rows.length
         ? Math.round(sum(rows, (r) => r.avg_duration_seconds) / rows.length)
         : 0;
