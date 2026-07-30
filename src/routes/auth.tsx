@@ -62,12 +62,12 @@ const highlights = [
 function AuthPage() {
   const { mode } = Route.useSearch();
   const navigate = useNavigate();
-  const scope = useScrollReveal<HTMLElement>([checking, emailSent, tab]);
   const [tab, setTab] = useState(mode === "signup" ? "signup" : "signin");
   const [loading, setLoading] = useState(false);
   const [checking, setChecking] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [emailSent, setEmailSent] = useState<string | null>(null);
+  const scope = useScrollReveal<HTMLElement>([checking, emailSent, tab]);
 
   useEffect(() => {
     let active = true;
