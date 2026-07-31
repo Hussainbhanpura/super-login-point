@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import {
@@ -262,6 +262,12 @@ function Dashboard() {
                 {r}
               </Badge>
             ))}
+            <Button asChild variant="ghost" size="sm">
+              <Link to="/apps">
+                <Layers className="size-4" />
+                My apps
+              </Link>
+            </Button>
             <Button variant="outline" size="sm" onClick={signOut}>
               <LogOut className="size-4" />
               Sign out
