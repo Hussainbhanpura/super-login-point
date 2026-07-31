@@ -73,7 +73,7 @@ function AuthPage() {
     let active = true;
     supabase.auth.getSession().then(({ data }) => {
       if (!active) return;
-      if (data.session) navigate({ to: "/dashboard", replace: true });
+      if (data.session) navigate({ to: "/apps", replace: true });
       else setChecking(false);
     });
     return () => {
@@ -114,7 +114,7 @@ function AuthPage() {
         .eq("id", data.user.id);
     }
     toast.success("Welcome back");
-    navigate({ to: "/dashboard", replace: true });
+    navigate({ to: "/apps", replace: true });
   }
 
   async function handleSignUp(e: React.FormEvent<HTMLFormElement>) {
@@ -145,7 +145,7 @@ function AuthPage() {
     }
     if (data.session) {
       toast.success("Account created");
-      navigate({ to: "/dashboard", replace: true });
+      navigate({ to: "/apps", replace: true });
       return;
     }
     setEmailSent(parsed.data.email);
