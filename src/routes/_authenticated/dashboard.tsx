@@ -262,6 +262,12 @@ function Dashboard() {
                 {r}
               </Badge>
             ))}
+            <Button asChild variant="ghost" size="sm">
+              <Link to="/apps">
+                <Layers className="size-4" />
+                My apps
+              </Link>
+            </Button>
             <Button variant="outline" size="sm" onClick={signOut}>
               <LogOut className="size-4" />
               Sign out
